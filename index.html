@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Primary Meta Tags -->
-    <title>TermiFlux - Switch Shell Architecture on Apple Silicon Mac</title>
+    <title>TermiFlux - macOS Architecture Switcher</title>
     <meta name="title" content="TermiFlux - Switch Shell Architecture on Apple Silicon Mac">
     <meta name="description" content="Seamlessly switch between ARM64 and x86_64 shell architectures on your Apple Silicon Mac. Simple installation, easy to use, and perfect for developers.">
     <meta name="keywords" content="TermiFlux, Apple Silicon, M1, M2, ARM64, x86_64, shell switcher, terminal, macOS, development tools">
@@ -15,14 +14,14 @@
     <meta name="revisit-after" content="7 days">
     <meta name="theme-color" content="#6e57e0">
 
-    <!-- Open Graph / Facebook -->
+
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://aryanvbw.github.io/TermiFlux/">
     <meta property="og:title" content="TermiFlux - Switch Shell Architecture on Apple Silicon Mac">
     <meta property="og:description" content="Seamlessly switch between ARM64 and x86_64 shell architectures on your Apple Silicon Mac. Simple installation, easy to use, and perfect for developers.">
     <meta property="og:image" content="https://aryanvbw.github.io/TermiFlux/docs/TermiFlux.png">
 
-    <!-- Twitter -->
+
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://aryanvbw.github.io/TermiFlux/">
     <meta property="twitter:title" content="TermiFlux - Switch Shell Architecture on Apple Silicon Mac">
@@ -30,27 +29,25 @@
     <meta property="twitter:image" content="https://aryanvbw.github.io/TermiFlux/docs/TermiFlux.png">
     <meta name="twitter:creator" content="@vivekwagadare">
 
-    <!-- Favicon -->
+
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
 
-    <!-- Canonical URL -->
+
     <meta rel="canonical" href="https://aryanvbw.github.io/TermiFlux/">
 
-    <!-- Additional Meta Tags -->
+
     <meta name="application-name" content="TermiFlux">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="TermiFlux">
     <meta name="format-detection" content="telephone=no">
-
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #6e57e0;
@@ -120,10 +117,6 @@
         }
         .nav-links a:hover {
             color: var(--accent);
-        }
-        .nav-links a.active {
-            color: var(--accent);
-            border-bottom: 2px solid var(--accent);
         }
         @media (max-width: 768px) {
             .nav-links {
@@ -283,27 +276,87 @@
                 display: none;
             }
         }
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0.5rem;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+        .install-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .install-step {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .install-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: var(--accent);
+        }
+        .step-number {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--dark);
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .install-step h3 {
+            color: var(--light);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        .install-step p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+        .shell-options {
+            margin-top: 1rem;
+        }
+        .shell-type {
+            font-weight: 600;
+            color: var(--accent);
+            margin: 1rem 0 0.5rem;
+        }
         .preview-images {
             display: flex;
-            gap: 3rem;
-            justify-content: center;
-            margin: 3rem 0;
+            gap: 1rem;
+            margin-top: 1.5rem;
             flex-wrap: wrap;
-        }
-        @media (min-width: 1200px) {
-            .preview-images {
-                gap: 4rem;
-                margin: 4rem 0;
-            }
-        }
-        @media (max-width: 768px) {
-            .preview-images {
-                flex-direction: column;
-                align-items: center;
-            }
-            .preview-image {
-                max-width: 100%;
-            }
+            justify-content: center;
         }
         .preview-image {
             max-width: 350px;
@@ -335,6 +388,29 @@
             color: rgba(255, 255, 255, 0.9);
             font-size: 0.95rem;
         }
+
+        .preview-images {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+        @media (min-width: 1200px) {
+            .preview-images {
+                gap: 4rem;
+                margin: 4rem 0;
+            }
+        }
+        @media (max-width: 768px) {
+            .preview-images {
+                flex-direction: column;
+                align-items: center;
+            }
+            .preview-image {
+                max-width: 100%;
+            }
+        }
         footer {
             text-align: center;
             padding: 2rem 0;
@@ -358,6 +434,7 @@
             color: var(--accent);
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -366,7 +443,7 @@
                 <div class="logo">TermiFlux</div>
             </div>
             <div class="nav-links">
-                <a href="index.html" class="active">Home</a>
+                <a href="index.html">Home</a>
                 <a href="usage.html">Usage</a>
                 <a href="technical.html">Documentation</a>
                 <a href="about.html">About</a>
@@ -380,33 +457,73 @@
 
         <section class="installation">
             <h2>Quick Installation</h2>
-            <p>Copy and paste this command in your terminal to install TermiFlux:</p>
             
-            <div class="code-container">
-                <div class="code-block" id="install-command">curl -sSL https://raw.githubusercontent.com/AryanVBW/TermiFlux/main/install_TermiFlux.sh | bash</div>
-                <button class="copy-btn" onclick="copyToClipboard('install-command')">
-                    <i class="fas fa-copy"></i>
-                    <span class="tooltip">Copy to clipboard</span>
-                </button>
+            <div class="install-steps">
+                <div class="install-step">
+                    <h3><span class="step-number">1</span>Install TermiFlux</h3>
+                    <p>Copy and paste this command in your terminal:</p>
+                    <div class="code-container">
+                        <div class="code-block" id="install-command">
+                            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/AryanVBW/TermiFlux/refs/heads/main/install_TermiFlux.sh)"
+                        </div>
+                        <button class="copy-btn" onclick="copyToClipboard('install-command')">
+                            <i class="fas fa-copy"></i>
+                            <span class="tooltip">Copy to clipboard</span>
+                        </button>
+                    </div>
+                    <div class="preview-images">
+                        <img src="TermiFlux.png" alt="TermiFlux Interface" class="preview-image">
+                    </div>
+                </div>
+                
+                <div class="install-step">
+                    <h3><span class="step-number">2</span>Activate TermiFlux</h3>
+                    <p>Choose your shell type and run the appropriate command:</p>
+                    <div class="shell-options">
+                        <div class="shell-type">For Zsh (Default shell):</div>
+                        <div class="code-container">
+                            <div class="code-block" id="zsh-command">
+                                source ~/.zshrc
+                            </div>
+                            <button class="copy-btn" onclick="copyToClipboard('zsh-command')">
+                                <i class="fas fa-copy"></i>
+                                <span class="tooltip">Copy to clipboard</span>
+                            </button>
+                        </div>
+
+                        <div class="shell-type">For Bash:</div>
+                        <div class="code-container">
+                            <div class="code-block" id="bash-command">
+                                source ~/.bashrc
+                            </div>
+                            <button class="copy-btn" onclick="copyToClipboard('bash-command')">
+                                <i class="fas fa-copy"></i>
+                                <span class="tooltip">Copy to clipboard</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="install-step">
+                    <h3><span class="step-number">3</span>Launch Terminal</h3>
+                    <p>Open a new terminal window and you'll automatically get options to choose your architecture:</p>
+                    <div class="preview-images">
+                        <img src="arm64_shell.png" alt="ARM64 Shell" class="preview-image">
+                        <img src="x86_64_shell.png" alt="x86_64 Shell" class="preview-image">
+                    </div>
+                    <div class="note">
+                        <i class="fas fa-info-circle"></i>
+                        <p>Note: After selecting an architecture and launching, you may get the option menu again. Don't worry - just select option 3 (exit) for the second time and you're ready to go. We're working on fixing this behavior.</p>
+                    </div>
+                </div>
             </div>
-
-            <div class="preview-images">
-                <img src="TermiFlux.png" alt="TermiFlux Interface" class="preview-image">
-            </div>
-
-            <h3>Shell Selection</h3>
-            <p>After installation, you'll be prompted to select your preferred shell architecture:</p>
-
-            <div class="preview-images">
-                <img src="arm64_shell.png" alt="ARM64 Shell Selection" class="preview-image">
-                <img src="x86_64_shell.png" alt="x86_64 Shell Selection" class="preview-image">
-            </div>
-
-            <div class="note">
-                <i class="fas fa-info-circle"></i>
-                <p>After selecting an architecture and launching, you may get the option menu again. Don't worry - just select option 3 (exit) for the second time and you're ready to go. We're working on fixing this behavior.</p>
+            
+            <div style="text-align: center; margin-top: 2.5rem;">
+                <a href="usage.html" class="btn">View Usage Guide</a>
+                <a href="technical.html" class="btn btn-secondary">Technical Documentation</a>
             </div>
         </section>
+
     </div>
 
     <footer>
@@ -423,39 +540,22 @@
     <script>
         function copyToClipboard(elementId) {
             const element = document.getElementById(elementId);
-            const text = element.textContent;
+            const text = element.innerText;
+            
             navigator.clipboard.writeText(text).then(() => {
-                const button = element.nextElementSibling;
-                const tooltip = button.querySelector('.tooltip');
-                const originalText = tooltip.textContent;
-                tooltip.textContent = 'Copied!';
+                const btn = element.nextElementSibling;
+                const icon = btn.querySelector('i');
+                
+                // Change icon temporarily
+                icon.classList.remove('fa-copy');
+                icon.classList.add('fa-check');
+                
                 setTimeout(() => {
-                    tooltip.textContent = originalText;
+                    icon.classList.remove('fa-check');
+                    icon.classList.add('fa-copy');
                 }, 2000);
             });
         }
-    </script>
-
-    <!-- Schema.org JSON-LD -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "TermiFlux",
-        "applicationCategory": "DeveloperApplication",
-        "operatingSystem": "macOS",
-        "description": "Seamlessly switch between ARM64 and x86_64 shell architectures on your Apple Silicon Mac",
-        "author": {
-            "@type": "Person",
-            "name": "Vivek W",
-            "url": "https://github.com/AryanVBW"
-        },
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        }
-    }
     </script>
 </body>
 </html>
