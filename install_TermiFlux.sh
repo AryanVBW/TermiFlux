@@ -43,12 +43,30 @@ fi
 TERMI_FLUX_URL="https://raw.githubusercontent.com/AryanVBW/TermiFlux/refs/heads/main/TermiFlux.sh"
 TERMI_FLUX_PATH="/usr/local/bin/TermiFlux"
 
+echo -e "${YELLOW}Checking if /usr/local/bin directory exists...${NC}"
+if [ ! -d "/usr/local/bin" ]; then
+    echo -e "${RED}/usr/local/bin directory not found! Creating it...${NC}"
+    sudo mkdir -p /usr/local/bin
+    echo -e "${GREEN}/usr/local/bin directory created!${NC}"
+fi
+
 echo -e "${YELLOW}Downloading TermiFlux...${NC}"
-wget -O "$TERMI_FLUX_PATH" "$TERMI_FLUX_URL" && echo -e "${GREEN}TermiFlux downloaded successfully!${NC}"
+sudo wget -O "$TERMI_FLUX_PATH" "$TERMI_FLUX_URL" || {
+    echo -e "${RED}Failed to download TermiFlux to $TERMI_FLUX_PATH${NC}"
+    echo -e "${YELLOW}Trying alternative installation to your home directory...${NC}"
+    
+    # Alternative installation path
+    TERMI_FLUX_PATH="$HOME/bin/TermiFlux"
+    mkdir -p "$HOME/bin"
+    wget -O "$TERMI_FLUX_PATH" "$TERMI_FLUX_URL" && echo -e "${GREEN}TermiFlux downloaded to $TERMI_FLUX_PATH successfully!${NC}"
+}
 
 echo -e "${YELLOW}Setting permissions...${NC}"
-chmod 777 "$TERMI_FLUX_PATH"
-echo -e "${GREEN}Permissions set to 777 for TermiFlux!${NC}"
+if [[ "$TERMI_FLUX_PATH" == "/usr/local/bin/TermiFlux" ]]; then
+    sudo chmod 755 "$TERMI_FLUX_PATH" && echo -e "${GREEN}Permissions set to 755 for TermiFlux!${NC}"
+else
+    chmod 755 "$TERMI_FLUX_PATH" && echo -e "${GREEN}Permissions set to 755 for TermiFlux!${NC}"
+fi
 
 # Detect default shell
 DEFAULT_SHELL=$(dscl . -read ~/ UserShell | awk '{print $2}')
@@ -65,10 +83,12 @@ fi
 
 # Add TermiFlux to shell startup
 if ! grep -q "TermiFlux" "$SHELL_CONFIG"; then
-    echo "bash $TERMI_FLUX_PATH" >> "$SHELL_CONFIG"
+    echo "bash \"$TERMI_FLUX_PATH\"" >> "$SHELL_CONFIG"
     echo -e "${GREEN}TermiFlux auto-launch configured in $SHELL_CONFIG!${NC}"
 else
-    echo -e "${GREEN}TermiFlux auto-launch already set up!${NC}"
+    # Update existing TermiFlux line with the correct path
+    sed -i.bak "s|bash .*TermiFlux.*|bash \"$TERMI_FLUX_PATH\"|g" "$SHELL_CONFIG"
+    echo -e "${GREEN}Updated TermiFlux auto-launch path in $SHELL_CONFIG!${NC}"
 fi
 
-echo -e "${GREEN}Installation complete! Restart your terminal to launch TermiFlux.${NC}"
+echo -e "${GREEN}Installation complete! Restart your terminal or run 'source $SHELL_CONFIG' to launch TermiFlux.${NC}"

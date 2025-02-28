@@ -12,15 +12,7 @@ Easily switch between **ARM64** and **x86_64** environments on Apple Silicon Mac
 
 ## 🛠 Installation & Setup
 
-### **1️⃣ One-Command Installation**
-To install and set up everything, run the following command in your terminal:
-```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/AryanVBW/TermiFlux/main/install_TermiFlux.sh)"
-```
-
-### **2️⃣ Manual Installation Steps**
-
-#### **1️⃣ Install Rosetta 2 (If Not Installed)**
+### **1️⃣ Install Rosetta 2 (If Not Installed)**
 Rosetta 2 is required to run x86_64 applications. To install it, run:
 ```sh
 softwareupdate --install-rosetta --agree-to-license
@@ -31,7 +23,7 @@ Check if Rosetta is installed:
 ```
 If it returns a **number (PID)**, Rosetta is running.
 
-#### **2️⃣ Add Switching Aliases**
+### **2️⃣ Add Switching Aliases**
 Edit your shell configuration file (`~/.zshrc` or `~/.bashrc`) and add:
 ```sh
 # Switch to x86_64 mode
@@ -45,7 +37,7 @@ Apply the changes:
 source ~/.zshrc  # or source ~/.bashrc
 ```
 
-#### **3️⃣ Open Terminal in x86_64 Mode (Alternative)**
+### **3️⃣ Open Terminal in x86_64 Mode (Alternative)**
 To open a new terminal session in **x86_64 mode**, run:
 ```sh
 osascript -e 'tell application "Terminal" to do script "arch -x86_64 /bin/zsh"'
@@ -72,18 +64,18 @@ osascript -e 'tell application "Terminal" to do script "arch -x86_64 /bin/zsh"'
 
 ## 🛠 Troubleshooting
 
-#### **1️⃣ Error: `Bad CPU type in executable`**
+### **1️⃣ Error: `Bad CPU type in executable`**
 - Ensure Rosetta 2 is installed (`/usr/bin/pgrep oahd`).
 - Some binaries may not support x86_64. Try:
   ```sh
   arch -x86_64 /usr/bin/env
   ```
 
-#### **2️⃣ Commands Not Working?**
+### **2️⃣ Commands Not Working?**
 - Restart your terminal or run `source ~/.zshrc`.
 - Ensure you are using the correct shell (`echo $SHELL`).
 
-#### **3️⃣ Open a Dedicated x86_64 Terminal Window**
+### **3️⃣ Open a Dedicated x86_64 Terminal Window**
 1. Open **Finder** → **Applications** → **Utilities**.
 2. Right-click on **Terminal.app** → **Get Info**.
 3. Check **"Open using Rosetta"**.
