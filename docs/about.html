@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TermiFlux - About</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6e57e0;
+            --secondary: #2d3748;
+            --accent: #00f5d4;
+            --dark: #1a202c;
+            --light: #f7fafc;
+            --code-bg: #2d3748;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--light);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            width: 100%;
+        }
+        @media (min-width: 1600px) {
+            .container {
+                max-width: 1600px;
+                padding: 0 60px;
+            }
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        .nav-links a.active {
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+            .nav-links a {
+                font-size: 0.8rem;
+            }
+            .logo {
+                font-size: 1.2rem;
+            }
+            nav {
+                padding: 1rem 0;
+            }
+        }
+        @media (max-width: 480px) {
+            .nav-links {
+                gap: 0.5rem;
+            }
+        }
+        .page-title {
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+        @media (min-width: 1200px) {
+            .page-title {
+                padding: 10rem 0 6rem;
+            }
+        }
+        .page-title h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .page-title p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        @media (max-width: 768px) {
+            .page-title {
+                padding: 3rem 0 1.5rem;
+            }
+            .page-title h1 {
+                font-size: 2rem;
+            }
+            .page-title p {
+                font-size: 1rem;
+            }
+        }
+        .content-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 3rem;
+            margin: 3rem auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            max-width: 1000px;
+        }
+        @media (min-width: 1200px) {
+            .content-section {
+                padding: 4rem;
+                margin: 4rem auto;
+                max-width: 1200px;
+            }
+        }
+        @media (max-width: 768px) {
+            .content-section {
+                padding: 1.5rem;
+                margin: 1.5rem auto;
+            }
+        }
+        .content-section h2 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 0.5rem;
+        }
+        .content-section h3 {
+            color: var(--light);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.3rem;
+        }
+        .about-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        @media (min-width: 1200px) {
+            .about-card {
+                padding: 3rem;
+                margin: 3rem 0;
+            }
+        }
+        .about-card h4 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        @media (max-width: 768px) {
+            .profile {
+                flex-direction: column;
+                text-align: center;
+            }
+            .profile-links {
+                justify-content: center;
+            }
+        }
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+        }
+        .profile-info h3 {
+            margin-top: 0;
+        }
+        .profile-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        .profile-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.2s;
+        }
+        .profile-links a:hover {
+            color: var(--light);
+        }
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: var(--accent);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+        @media (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+        }
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+        @media (max-width: 768px) {
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            .timeline-item:nth-child(odd) {
+                left: 0;
+            }
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            .timeline-item:nth-child(odd)::after {
+                right: auto;
+                left: 20px;
+            }
+            .timeline-item:nth-child(even)::after {
+                left: 20px;
+            }
+        }
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 1.5rem;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .timeline-date {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+        @media (max-width: 768px) {
+            .btn {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+                display: block;
+                text-align: center;
+                margin: 1rem auto 0;
+                max-width: 200px;
+            }
+        }
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .social-links a {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2rem;
+            transition: color 0.2s;
+        }
+        .social-links a:hover {
+            color: var(--accent);
+        }
+        .contribute-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .contribute-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .contribute-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: var(--accent);
+        }
+        .contribute-card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .contribute-card i {
+            font-size: 1.2rem;
+        }
+        .contribute-card p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        .contribute-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .contribute-card li {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .contribute-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="logo-container">
+                <div class="logo">TermiFlux</div>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="usage.html">Usage</a>
+                <a href="technical.html">Documentation</a>
+                <a href="about.html" class="active">About</a>
+            </div>
+        </nav>
+
+        <div class="page-title">
+            <h1>About TermiFlux</h1>
+            <p>Learn about the project and the people behind it</p>
+        </div>
+
+        <section class="content-section">
+            <h2>Project Overview</h2>
+            
+            <div class="about-card">
+                <h4>What is TermiFlux?</h4>
+                <p>TermiFlux is a powerful utility for macOS that enables seamless switching between ARM64 and x86_64 architectures on Apple Silicon Macs. It was created to simplify the development workflow for developers who need to work with both architectures.</p>
+                <p>The project aims to provide a user-friendly interface for architecture switching, making it accessible to developers of all skill levels.</p>
+            </div>
+            
+            <div class="about-card">
+                <h4>Why TermiFlux?</h4>
+                <p>With the transition to Apple Silicon, many developers face challenges when working with software that hasn't been fully optimized for ARM64 architecture. TermiFlux bridges this gap by providing an elegant solution for switching between architectures without interrupting your workflow.</p>
+                <p>Key benefits include:</p>
+                <ul>
+                    <li>Simplified architecture switching with intuitive commands</li>
+                    <li>Automatic Rosetta 2 installation and management</li>
+                    <li>Seamless integration with your terminal environment</li>
+                    <li>Easy installation and configuration</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Meet the Creator</h2>
+            
+            <div class="profile">
+                <img src="https://github.com/AryanVBW.png" alt="Vivek W" class="profile-image">
+                <div class="profile-info">
+                    <h3>Vivek W (AryanVBW)</h3>
+                    <p>Developer and creator of TermiFlux</p>
+                    <div class="profile-links">
+                        <a href="https://github.com/AryanVBW" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://twitter.com/vivekwagadare" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="mailto:admin@aryanvbw.live"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-card">
+                <h4>About the Developer</h4>
+                <p>Vivek W is a passionate developer focused on creating tools that simplify complex workflows. With a background in system administration and software development, Vivek created TermiFlux to address the challenges faced by developers working on Apple Silicon Macs.</p>
+                <p>When not coding, Vivek enjoys exploring new technologies and contributing to open-source projects.</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Project Timeline</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">February 27, 2025</div>
+                        <h4>Project Inception</h4>
+                        <p>The idea for TermiFlux was born during a conversation with mentor Mr. Krushn Sir, who suggested helping classmate Saloni with her MacBook project setup.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">February 27, 2025</div>
+                        <h4>Problem Identification</h4>
+                        <p>Realized that many students face similar architecture-related issues on Apple Silicon Macs, following previous experience helping classmate Arohi Jadhav.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">February 27, 2025</div>
+                        <h4>Solution Development</h4>
+                        <p>Created an automatic installation script based on Mr. Krushn Sir's approach to solving architecture switching problems.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">February 27, 2025</div>
+                        <h4>Project Launch</h4>
+                        <p>Released TermiFlux on GitHub to help all students and developers facing architecture switching challenges on Apple Silicon Macs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section contributing">
+            <h2>Contributing to TermiFlux</h2>
+            <p>We welcome contributions from the community! Here's how you can help make TermiFlux better:</p>
+            
+            <div class="contribute-grid">
+                <div class="contribute-card">
+                    <h3><i class="fas fa-code"></i> Code Contributions</h3>
+                    <p>Help improve TermiFlux by contributing code:</p>
+                    <ul>
+                        <li>Fix bugs and issues</li>
+                        <li>Add new features</li>
+                        <li>Improve performance</li>
+                        <li>Write tests</li>
+                    </ul>
+                </div>
+
+                <div class="contribute-card">
+                    <h3><i class="fas fa-book"></i> Documentation</h3>
+                    <p>Help make TermiFlux easier to use:</p>
+                    <ul>
+                        <li>Improve documentation</li>
+                        <li>Write tutorials</li>
+                        <li>Create examples</li>
+                        <li>Fix typos and errors</li>
+                    </ul>
+                </div>
+
+                <div class="contribute-card">
+                    <h3><i class="fas fa-bug"></i> Testing & Feedback</h3>
+                    <p>Help ensure TermiFlux works well:</p>
+                    <ul>
+                        <li>Report bugs</li>
+                        <li>Suggest improvements</li>
+                        <li>Share use cases</li>
+                        <li>Test new features</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="about-card" style="margin-top: 2rem;">
+                <h4>How to Get Started</h4>
+                <p>Ready to contribute? Here's how to get started:</p>
+                <ol>
+                    <li>Fork the repository on GitHub</li>
+                    <li>Create a new branch for your feature</li>
+                    <li>Commit your changes</li>
+                    <li>Push to your branch</li>
+                    <li>Create a new Pull Request</li>
+                </ol>
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <a href="https://github.com/AryanVBW/TermiFlux" class="btn" target="_blank">
+                        <i class="fab fa-github"></i> Contribute on GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 TermiFlux. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/AryanVBW/TermiFlux" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://x.com/vivekwagadare" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:admin@aryanvbw.live"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
