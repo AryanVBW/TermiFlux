@@ -73,7 +73,8 @@ check_arch
 echo -e "\n\033[1;32mSelect the architecture mode to switch to:\033[0m"
 echo -e "\033[1;32m1) ARM64 (Default)\033[0m"
 echo -e "\033[1;32m2) x86_64 (via Rosetta 2)\033[0m"
-read -p "Enter your choice (1 or 2): " choice
+echo -e "\033[1;32m3) Exit\033[0m"
+read -p "Enter your choice (1, 2, or 3): " choice
 
 case $choice in
     1)
@@ -83,6 +84,10 @@ case $choice in
     2)
         echo -e "\033[1;32mSwitching to x86_64 shell...\033[0m"
         arch -x86_64 /bin/zsh
+        ;;
+    3)
+        echo -e "\033[1;32mExiting...\033[0m"
+        exit 0
         ;;
     *)
         echo -e "\033[1;32mInvalid choice! Exiting...\033[0m"
