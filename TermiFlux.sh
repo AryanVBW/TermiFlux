@@ -70,22 +70,22 @@ check_rosetta
 check_arch
 
 # Step 3: Choose architecture to switch to
-echo "\nSelect the architecture mode to switch to:"
-echo "1) ARM64 (Default)"
-echo "2) x86_64 (via Rosetta 2)"
+echo -e "\n\033[1;32mSelect the architecture mode to switch to:\033[0m"
+echo -e "\033[1;32m1) ARM64 (Default)\033[0m"
+echo -e "\033[1;32m2) x86_64 (via Rosetta 2)\033[0m"
 read -p "Enter your choice (1 or 2): " choice
 
 case $choice in
     1)
-        echo "Switching to ARM64 shell..."
+        echo -e "\033[1;32mSwitching to ARM64 shell...\033[0m"
         exec /bin/zsh
         ;;
     2)
-        echo "Switching to x86_64 shell..."
+        echo -e "\033[1;32mSwitching to x86_64 shell...\033[0m"
         arch -x86_64 /bin/zsh
         ;;
     *)
-        echo "Invalid choice! Exiting..."
+        echo -e "\033[1;32mInvalid choice! Exiting...\033[0m"
         exit 1
         ;;
 esac
