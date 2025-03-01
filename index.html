@@ -102,6 +102,7 @@
             font-weight: 700;
             font-size: 1.5rem;
             background: linear-gradient(90deg, var(--accent), var(--primary));
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -208,6 +209,7 @@
             font-size: 3.5rem;
             margin-bottom: 1rem;
             background: linear-gradient(90deg, var(--accent), var(--primary));
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1.2;
@@ -420,6 +422,11 @@
             max-width: 350px;
             border-radius: 8px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .preview-image:hover {
+            transform: scale(1.05);
         }
         @media (min-width: 1200px) {
             .preview-image {
@@ -468,6 +475,58 @@
             .preview-image {
                 max-width: 100%;
             }
+        }
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-content {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            transform: scale(0.7);
+            transition: transform 0.3s ease;
+        }
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 1001;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+        .close-modal:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
         footer {
             text-align: center;
@@ -519,7 +578,7 @@
                         </button>
                     </div>
                     <div class="preview-images">
-                        <img src="TermiFlux.png" alt="TermiFlux Interface" class="preview-image">
+                        <img src="TermiFlux.png" alt="TermiFlux Interface" class="preview-image" onclick="openModal(this.src, this.alt)">
                     </div>
                 </div>
                 
@@ -555,8 +614,8 @@
                     <h3><span class="step-number">3</span>Launch Terminal</h3>
                     <p>Open a new terminal window and you'll automatically get options to choose your architecture:</p>
                     <div class="preview-images">
-                        <img src="arm64_shell.png" alt="ARM64 Shell" class="preview-image">
-                        <img src="x86_64_shell.png" alt="x86_64 Shell" class="preview-image">
+                        <img src="arm64_shell.png" alt="ARM64 Shell" class="preview-image" onclick="openModal(this.src, this.alt)">
+                        <img src="x86_64_shell.png" alt="x86_64 Shell" class="preview-image" onclick="openModal(this.src, this.alt)">
                     </div>
                     <div class="note">
                         <i class="fas fa-info-circle"></i>
@@ -571,6 +630,12 @@
             </div>
         </section>
 
+    </div>
+
+    <!-- Add Modal HTML -->
+    <div class="modal" id="imageModal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
     </div>
 
     <footer>
@@ -626,6 +691,36 @@
                 }, 2000);
             });
         }
+
+        // Add modal functionality
+        function openModal(imgSrc, imgAlt) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.classList.add('active');
+            modalImg.src = imgSrc;
+            modalImg.alt = imgAlt;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside the image
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal with escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
     </script>
 </body>
 </html>
